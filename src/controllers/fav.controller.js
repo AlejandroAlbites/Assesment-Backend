@@ -42,7 +42,6 @@ const create = async (req, res) => {
 const list = async (req, res) => {
   try {
     const favs = await Fav.find();
-    console.log(favs);
 
     res.status(200).json({ ok: true, message: "Favs found", Favs: favs });
   } catch (err) {

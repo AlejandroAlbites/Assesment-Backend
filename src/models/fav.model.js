@@ -6,7 +6,7 @@ const FavSchema = new Schema(
       type: String,
       required: [true, "name is required"],
       minlength: 4,
-      maxlength: 12,
+      maxlength: 20,
     },
     description: {
       type: String,
