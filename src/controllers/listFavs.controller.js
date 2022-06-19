@@ -1,8 +1,6 @@
 const ListFavs = require("../models/listFavs.model");
 const User = require("../models/user.model");
 
-// CREATE - POST
-
 const create = async (req, res) => {
   try {
     const { userId } = req;
