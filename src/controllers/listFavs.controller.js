@@ -5,14 +5,14 @@ const User = require("../models/user.model");
 
 const create = async (req, res) => {
   try {
-    const { _id } = req;
+    const { userId } = req;
 
-    const user = await User.findById(_id);
+    const user = await User.findById(userId);
 
     if (!user) {
       throw new Error("Invalid user");
     }
-    const listFavs = await ListFavs.create({ ...req.body, user: _id });
+    const listFavs = await ListFavs.create({ ...req.body, user: user._id });
 
     await User.updateOne(
       { _id: user._id },
@@ -63,9 +63,9 @@ const show = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const { id } = req.params;
-    const { _id } = req;
+    const { userId } = req;
 
-    const user = await User.findById(_id);
+    const user = await User.findById(userId);
     if (!user) {
       throw new Error("Invalid user");
     }

@@ -6,12 +6,16 @@ const listFavsSchema = new Schema(
       type: String,
       required: [true, "name is required"],
       minlength: 4,
-      maxlength: 12,
+      maxlength: 20,
     },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: [true, "User is required to create a Favs List"],
+    },
+    Favs: {
+      type: [Schema.Types.Object],
+      ref: "Fav",
     },
   },
   {

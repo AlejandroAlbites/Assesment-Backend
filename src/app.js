@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const userRouter = require("./routes/user");
 const listFavsRouter = require("./routes/listFavs");
+const favRouter = require("./routes/fav");
 
 const app = express();
 
@@ -14,5 +15,6 @@ app.use(cors());
 //EndPoints
 app.use("/auth/local/", userRouter);
 app.use("/api", listFavsRouter);
+app.use("/api", favRouter);
 
 module.exports = app;
