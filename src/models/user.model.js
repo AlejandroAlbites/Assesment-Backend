@@ -19,6 +19,10 @@ const userSchema = new Schema(
       type: String,
       required: [true, "password is required"],
     },
+    listFavs: {
+      type: [Schema.Types.ObjectId],
+      ref: "ListFavs",
+    },
   },
   {
     timestamps: true,

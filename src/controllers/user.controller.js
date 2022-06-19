@@ -46,13 +46,13 @@ const login = async (req, res) => {
         .json({ ok: false, message: "the email or password is not correct" });
     }
 
-    // const token = await generateJWT(user._id);
+    const token = await generateJWT(user._id);
 
     res.status(200).json({
       ok: true,
       message: "Login successful",
       user,
-      //   token,
+      token,
     });
   } catch (err) {
     res.status(401).json({

@@ -5,18 +5,18 @@ const validateJWT = (req, res, next) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      throw new Error("Si sesión expiró");
+      throw new Error("Your sesion expired");
     }
 
     const [_, token] = authorization.split(" ");
 
     if (!token) {
-      throw new Error("Si sesión expiró");
+      throw new Error("Your sesion expired");
     }
 
-    const { id } = jwt.verify(token, process.env.SECRET_JWT_SEED);
+    const { _id } = jwt.verify(token, process.env.SECRET_JWT_SEED);
 
-    req.user = id;
+    req._id = _id;
 
     next();
   } catch (err) {
