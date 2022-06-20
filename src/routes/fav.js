@@ -8,7 +8,7 @@ const {
 const { validateJWT } = require("../middlewares/validateJWT");
 
 router.post("/listFavs/fav", validateJWT, create);
-router.get("/listFavs/fav", validateJWT, list);
+router.get("/listFavs/favs/:listFavId", validateJWT, list);
 router.get("/listFavs/fav/:favId", validateJWT, show);
 router.delete("/listFavs/fav/:favId", validateJWT, destroy);
 

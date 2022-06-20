@@ -39,7 +39,20 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    const favs = await Fav.find();
+    const { userId } = req;
+    const { listFavId } = req.params;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("Invalid user");
+    }
+    const listFav = await ListFavs.findById(listFavId);
+
+    if (listFav.user.toString() !== user._id.toString()) {
+      throw new Error("list fav does not belong to this user");
+    }
+
+    const favs = await Fav.find({ listFavId: listFavId });
 
     res.status(200).json({ ok: true, message: "Favs found", Favs: favs });
   } catch (err) {
@@ -51,16 +64,26 @@ const list = async (req, res) => {
 const show = async (req, res) => {
   try {
     const { favId } = req.params;
+    const { userId } = req;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("Invalid user");
+    }
     const fav = await Fav.findById(favId);
     if (!fav) {
       throw new Error("Invalid fav");
     }
+    const listFav = await ListFavs.findById(fav.listFavId);
 
-    res.status(200).json({ ok: true, message: "List Fav found", data: fav });
+    if (listFav.user.toString() !== user._id.toString()) {
+      throw new Error("list fav does not belong to this user");
+    }
+
+    res.status(200).json({ ok: true, message: "Fav found", data: fav });
   } catch (err) {
-    res
-      .status(404)
-      .json({ ok: false, message: "List Fav not found", data: err });
+    console.log(err);
+    res.status(404).json({ ok: false, message: "Fav not found", data: err });
   }
 };
 

@@ -31,7 +31,8 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    const listFavs = await ListFavs.find();
+    const { userId } = req;
+    const listFavs = await ListFavs.find({ user: userId });
 
     res
       .status(200)
@@ -46,12 +47,23 @@ const list = async (req, res) => {
 const show = async (req, res) => {
   try {
     const { id } = req.params;
+    const { userId } = req;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("Invalid user");
+    }
     const listFav = await ListFavs.findById(id);
+
+    if (listFav.user.toString() !== user._id.toString()) {
+      throw new Error("list fav does not belong to this user");
+    }
 
     res
       .status(200)
       .json({ ok: true, message: "List Fav found", data: listFav });
   } catch (err) {
+    console.log(err);
     res
       .status(404)
       .json({ ok: false, message: "List Fav not found", data: err });
