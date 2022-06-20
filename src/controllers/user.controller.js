@@ -20,7 +20,7 @@ const register = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(404).json({
+    res.status(400).json({
       ok: false,
       message: "User coult not be create",
       data: err,
@@ -34,6 +34,7 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
+      // throw Error("Invalid email or password");
       return res
         .status(400)
         .json({ ok: false, message: "the email or password is not correct" });
@@ -41,6 +42,7 @@ const login = async (req, res) => {
 
     const validatePassword = await bcrypt.compare(password, user.password);
     if (!validatePassword) {
+      // throw Error("Invalid email or password");
       return res
         .status(400)
         .json({ ok: false, message: "the email or password is not correct" });

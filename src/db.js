@@ -25,7 +25,6 @@ function connect() {
 
 async function disconnected() {
   if (!connection) return;
-
   await mongoose.disconnect();
 }
 
