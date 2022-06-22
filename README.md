@@ -49,7 +49,7 @@ Para ejecutar la API de manera local se requiere clonar el repositorio y tener i
 
 Puede utilizar la aplicación Postman o similares para probar la API:
 
-##### Register and Login
+#### Register and Login
 
 1. Para crear un nuevo usuario realice un POST al siguiente end point de registro:
 
@@ -87,7 +87,7 @@ Los campos Email y Password también son requeridos para ingresar con un usuario
 
 De obtener una respuesta exitosa (status 200) en la respuesta podra obtener un token de autenticación el cual le servira para realizar las demas peticiones.
 
-##### Listas de favoritos
+#### Listas de favoritos
 
 Para las siguientes funcionalidades usted requiere estar autenticado y contar con un token ya que estas rutas estan protegidas con un middleware de autenticación.
 
@@ -134,7 +134,7 @@ Debe reemplazar el :id por el ID de la lista de favoritos que desea eliminar. Pu
 
 Nota: Solo se eliminará la lista si el usuario fue quien la creo, de no ser el caso obtendra una respuesta negativa (status 404) y en consola "List fav does not belong to this user"
 
-##### Favoritos
+#### Favoritos
 
 El usuario puede empezar a llenar sus listas de favoritos con los favoritos que desee:
 
@@ -196,7 +196,7 @@ Debe reemplazar el :favId por el ID del favorito que desea eliminar. Puede obten
 
 Nota: Solo se eliminará el favorito si el usuario fue quien lo creo, de no ser el caso obtendra una respuesta negativa (status 404) y en consola "List fav does not belong to this user"
 
-##### Test
+#### Test
 
 Esta aplicación se probo a mas de un 50% por fines academicos.
 
@@ -204,4 +204,4 @@ Puede verificarlo mediante el comando:
 
 `npm run test:coverage`
 
-##### END
+#### END
