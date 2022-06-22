@@ -30,16 +30,26 @@ Para ejecutar la API de manera local se requiere clonar el repositorio y tener i
 
 3. Ejecutar `Control + C` para detener el proceso
 
+#### Despliegue en Heroku
+
+Esta API se encuentra desplegada en Heroku, puede utilizar el siguiente enlace antes de las rutas para usar la API.
+
+`https://assesment-backend2-t22.herokuapp.com/`
+
+Por ejemplo para el registro:
+
+`https://assesment-backend2-t22.herokuapp.com/auth/local/register`
+
 ### End Points
 
 | Route                         | HTTP verb | Route Middleware | Description                                   |
 | ----------------------------- | --------- | ---------------- | --------------------------------------------- |
 | /auth/local/register          | POST      |                  | Registrarse con email y password              |
 | /auth/local/login             | POST      |                  | Logearse con email y password                 |
-| /api/favs                     | POST      | validateJWT()    | Crea una nueva lista de favoritos             |
-| /api/favs                     | GET       | validateJWT()    | Muestra todas las listas del usuario          |
-| /api/favs/:id                 | GET       | validateJWT()    | Muestra una lista del usuario                 |
-| /api/favs/:id                 | DELETE    | validateJWT()    | Elimina una lista del usuario                 |
+| /api/listFavs                 | POST      | validateJWT()    | Crea una nueva lista de favoritos             |
+| /api/listFavs                 | GET       | validateJWT()    | Muestra todas las listas del usuario          |
+| /api/listFavs/:id             | GET       | validateJWT()    | Muestra una lista del usuario                 |
+| /api/listFavs/:id             | DELETE    | validateJWT()    | Elimina una lista del usuario                 |
 | /api/listFavs/fav             | POST      | validateJWT()    | Crea un favorito en una lista de favoritos    |
 | /api/listFavs/favs/:listFavId | GET       | validateJWT()    | Muestra todos los favoritos de una lista      |
 | /api/listFavs/fav/:favId      | GET       | validateJWT()    | Muestra un favorito específico                |
@@ -100,7 +110,7 @@ por ejemplo:
 
 1. Para crear una lista de favoritos realice un POST al siguiente end point:
 
-`http://localhost:8080/api/favs`
+`http://localhost:8080/api/listFavs`
 
 y en el body ingresar el nombre de la lista:
 
@@ -114,13 +124,13 @@ El campo name es requerido, si usted no lo ingresa obtendra una respuesta negati
 
 2. Para obtener todas las listas de favoritos que el usuario ha creado se debe realizar una petición GET al siguiente end point:
 
-`http://localhost:8080/api/favs`
+`http://localhost:8080/api/listFavs`
 
 Nota: Solo se mostrarán las listas que el usuario haya creado, esto se verifica mediante el token.
 
 3. Para obtener una lista específica se debe realizar una petición GET al siguiente end point:
 
-`http://localhost:8080/api/favs/:id`
+`http://localhost:8080/api/listFavs/:id`
 
 Debe reemplazar el :id por el ID de la lista de favoritos que desea buscar. Puede obtener el ID mediante la petición anterior de obtener todas las listas de favoritos.
 
@@ -128,7 +138,7 @@ Nota: Solo se mostrará la lista si el usuario fue quien la creo, de no ser el c
 
 4. Para eliminar una lista de favoritos se debe realizar una petición DELETE al siguiente end point:
 
-`http://localhost:8080/api/favs/:id`
+`http://localhost:8080/api/listFavs/:id`
 
 Debe reemplazar el :id por el ID de la lista de favoritos que desea eliminar. Puede obtener el ID mediante la petición anterior de obtener todas las listas de favoritos.
 

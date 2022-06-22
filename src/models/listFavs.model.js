@@ -14,7 +14,7 @@ const listFavsSchema = new Schema(
       required: [true, "User is required to create a Favs List"],
     },
     Favs: {
-      type: [Schema.Types.Object],
+      type: [Schema.Types.ObjectId],
       ref: "Fav",
     },
   },

@@ -6,6 +6,11 @@ const register = async (req, res) => {
   try {
     const { password } = req.body;
 
+    if (password.length < 6 || password.length > 8) {
+      throw new Error(
+        "The password must have a minimum of 6 characters and a maximum of 8 characters"
+      );
+    }
     const encryptPassword = await bcrypt.hash(password, 8);
 
     const user = await User.create({ ...req.body, password: encryptPassword });
@@ -22,7 +27,7 @@ const register = async (req, res) => {
     console.log(err);
     res.status(400).json({
       ok: false,
-      message: "User coult not be create",
+      message: "User could not be create",
       data: err,
     });
   }

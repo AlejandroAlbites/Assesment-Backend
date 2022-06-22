@@ -7,9 +7,9 @@ const {
 } = require("../controllers/listFavs.controller");
 const { validateJWT } = require("../middlewares/validateJWT");
 
-router.post("/favs", validateJWT, create);
-router.get("/favs", validateJWT, list);
-router.get("/favs/:id", validateJWT, show);
-router.delete("/favs/:id", validateJWT, destroy);
+router.post("/listFavs", validateJWT, create);
+router.get("/listFavs", validateJWT, list);
+router.get("/listFavs/:id", validateJWT, show);
+router.delete("/listFavs/:id", validateJWT, destroy);
 
 module.exports = router;

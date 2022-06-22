@@ -1,5 +1,6 @@
 const ListFavs = require("../models/listFavs.model");
 const User = require("../models/user.model");
+const Fav = require("../models/fav.model");
 
 const create = async (req, res) => {
   try {
@@ -32,7 +33,10 @@ const create = async (req, res) => {
 const list = async (req, res) => {
   try {
     const { userId } = req;
-    const listFavs = await ListFavs.find({ user: userId });
+    const listFavs = await ListFavs.find({ user: userId }).populate(
+      "Favs",
+      "title description link"
+    );
 
     res
       .status(200)
@@ -53,7 +57,10 @@ const show = async (req, res) => {
     if (!user) {
       throw new Error("Invalid user");
     }
-    const listFav = await ListFavs.findById(id);
+    const listFav = await ListFavs.findById(id).populate(
+      "Favs",
+      "title description link"
+    );
 
     if (listFav.user.toString() !== user._id.toString()) {
       throw new Error("list fav does not belong to this user");
@@ -83,6 +90,12 @@ const destroy = async (req, res) => {
 
     if (listFav.user.toString() !== user._id.toString()) {
       throw new Error("list fav does not belong to this user");
+    }
+
+    const favs = await Fav.find({ listFavId: listFav._id });
+
+    if (favs.length > 0) {
+      await Fav.deleteMany({ listFavId: listFav._id });
     }
     await ListFavs.findByIdAndDelete(listFav._id);
     await User.updateOne(
