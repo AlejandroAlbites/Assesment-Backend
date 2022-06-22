@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "cross-env MONGODB_URI=mongodb+srv://root:bZf6teDkmRU0rRrW@cluster0.5zjkri6.mongodb.net/favs-test?retryWrites=true&w=majority jest",
     "test:coverage": "npm test -- --coverage"
