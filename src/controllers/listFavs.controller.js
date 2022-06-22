@@ -91,7 +91,6 @@ const destroy = async (req, res) => {
     if (listFav.user.toString() !== user._id.toString()) {
       throw new Error("list fav does not belong to this user");
     }
-
     const favs = await Fav.find({ listFavId: listFav._id });
 
     if (favs.length > 0) {

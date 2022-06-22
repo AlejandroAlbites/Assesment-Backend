@@ -101,7 +101,7 @@ De obtener una respuesta exitosa (status 200) en la respuesta podra obtener un t
 
 Para las siguientes funcionalidades usted requiere estar autenticado y contar con un token ya que estas rutas estan protegidas con un middleware de autenticación.
 
-Para los siguientes end point se requiere que el usuario ingrese su token de autenticación en la opcion de Headers del postman. en Key colocar: authorization y en value: Bearer (el valor del token)
+Para los siguientes end point se requiere que el usuario ingrese su token de autenticación en la opcion de Headers del postman. en Key colocar: authorization y en value: Bearer (el valor del token).
 
 por ejemplo:
 
