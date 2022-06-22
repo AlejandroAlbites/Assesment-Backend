@@ -30,6 +30,16 @@ Para ejecutar la API de manera local se requiere clonar el repositorio y tener i
 
 3. Ejecutar `Control + C` para detener el proceso
 
+#### Despliegue en Heroku
+
+Esta API se encuentra desplegada en Heroku, puede utilizar el siguiente enlace antes de las rutas para usar la API.
+
+`https://assesment-backend2-t22.herokuapp.com/`
+
+Por ejemplo para el registro:
+
+`https://assesment-backend2-t22.herokuapp.com/auth/local/register`
+
 ### End Points
 
 | Route                         | HTTP verb | Route Middleware | Description                                   |
