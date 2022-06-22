@@ -33,6 +33,13 @@ const create = async (req, res) => {
 const list = async (req, res) => {
   try {
     const { userId } = req;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error("Invalid user");
+    }
+
     const listFavs = await ListFavs.find({ user: userId }).populate(
       "Favs",
       "title description link"
